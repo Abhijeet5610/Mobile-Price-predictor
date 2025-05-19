@@ -18,10 +18,11 @@ features = [
 user_input = []
 for feat in features:
     if feat in int_features:
-        val = st.number_input(f"{feat}:", value=0, step=1)
+        val = st.number_input(f"{feat}:", value=0, step=1)  # int inputs
     else:
-        val = st.number_input(f"{feat}:", value=0, step=1)
+        val = st.number_input(f"{feat}:", value=0.0, step=0.1)  # float inputs
     user_input.append(val)
+
 
 if st.button("Predict Price Range"):
     X = np.array(user_input).reshape(1, -1)
