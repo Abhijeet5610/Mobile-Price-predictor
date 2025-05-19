@@ -17,7 +17,10 @@ features = [
 
 user_input = []
 for feat in features:
-    val = st.number_input(f"{feat}:", value=0.0 if feat not in ["blue", "dual_sim", "four_g", "three_g", "touch_screen", "wifi"] else 0, step=1.0)
+    if feat in int_features:
+        val = st.number_input(f"{feat}:", value=0, step=1)
+    else:
+        val = st.number_input(f"{feat}:", value=0.0, step=0.1)
     user_input.append(val)
 
 if st.button("Predict Price Range"):
