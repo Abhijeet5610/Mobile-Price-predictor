@@ -47,7 +47,7 @@ def get_range(feat, is_int):
 
 # Group inputs
 user_input = []
-with st.expander("📋 Enter Mobile Specifications", expanded=True):
+with st.expander("Enter Mobile Specifications", expanded=True):
     for i in range(0, len(features), 2):
         cols = st.columns(2)
         for j in range(2):
@@ -79,10 +79,10 @@ with st.expander("📋 Enter Mobile Specifications", expanded=True):
                 user_input.append(val)
 
 
-if st.button("🔍 Predict Price Range"):
+if st.button(" Predict Price Range"):
     X = np.array(user_input).reshape(1, -1)
     X_scaled = scaler.transform(X)
     pred = model.predict(X_scaled)[0]
     price_map = {0: "Low", 1: "Medium", 2: "High", 3: "Very High"}
-    st.success(f"💰 **Predicted Price Range: {price_map.get(pred, pred)}**")
+    st.success(f" **Predicted Price Range: {price_map.get(pred, pred)}**")
 
