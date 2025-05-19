@@ -3,7 +3,7 @@ import joblib
 import numpy as np
 import pandas as pd
 
-model = joblib.load("model/best_model.pkl")
+model = joblib.load("logistic_regression_model.pkl")
 scaler = joblib.load("scaler.pkl")
 
 st.title("📱 Mobile Price Range Predictor")
