@@ -45,6 +45,7 @@ def get_range(feat, is_int):
         return feature_ranges[feat]
     return (0, 10) if is_int else (0.0, 10.0)
 
+# Group inputs
 user_input = []
 with st.expander("📋 Enter Mobile Specifications", expanded=True):
     for i in range(0, len(features), 2):
@@ -54,13 +55,29 @@ with st.expander("📋 Enter Mobile Specifications", expanded=True):
                 feat = features[i + j]
                 min_val, max_val = get_range(feat, feat in int_features)
 
+                label = feat.replace('_', ' ').title()
+
                 if feat in int_features:
-                    val = cols[j].number_input(f"{feat.replace('_', ' ').title()}", 
-                                               min_value=min_val, max_value=max_val, value=min_val, step=1)
+                    min_val, max_val = int(min_val), int(max_val)
+                    val = cols[j].number_input(
+                        label,
+                        min_value=min_val,
+                        max_value=max_val,
+                        value=min_val,
+                        step=1
+                    )
                 else:
-                    val = cols[j].number_input(f"{feat.replace('_', ' ').title()}", 
-                                               min_value=float(min_val), max_value=float(max_val), value=float(min_val), step=0.1)
+                    min_val, max_val = float(min_val), float(max_val)
+                    val = cols[j].number_input(
+                        label,
+                        min_value=min_val,
+                        max_value=max_val,
+                        value=min_val,
+                        step=0.1
+                    )
+
                 user_input.append(val)
+
 
 if st.button("🔍 Predict Price Range"):
     X = np.array(user_input).reshape(1, -1)
